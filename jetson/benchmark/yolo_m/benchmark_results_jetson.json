@@ -1,0 +1,19 @@
+{
+    "platform": "Jetson (aarch64)",
+    "model": "/home/laheckaf/ssj/models/yolo_m.engine",
+    "img_size": 640,
+    "iou_threshold": 0.5,
+    "mAP50-95": 0.6756247421102319,
+    "mAP50": 0.8747377735093409,
+    "Precision": [
+        0.839116508741492
+    ],
+    "Recall": [
+        0.838976548687327
+    ],
+    "F1_Score": [
+        0.8390465228777794
+    ],
+    "FPS": 21.37781633003763,
+    "Avg_Inference_ms": 46.77746242000012
+}
