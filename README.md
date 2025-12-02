@@ -1,4 +1,4 @@
-# RISE_OnDevice_AI
+# RISE_OnDevice_AI_Project
 
 ## Custom Learning YOLO Model
 - YOLOv8n
