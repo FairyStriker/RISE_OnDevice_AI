@@ -24,6 +24,8 @@
 - OperatingSystem:
 
 #### RaspberryPi 5 + Hailo-8
+- Type of Storage:
+- OperatingSystem:
 
 ## Extension
 - *.pt
