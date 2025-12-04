@@ -47,7 +47,7 @@ async def websocket_endpoint(websocket: WebSocket, client_id: str):
                 data_store.update_data(client_id, json_data)
                 
                 # 로그 출력 (디버깅용)
-                # print(f"📥 [{client_id}] 데이터 갱신 완료")
+                print(f"📥 [{client_id}] 데이터 갱신 완료")
                 
             except json.JSONDecodeError:
                 logger.warning(f"⚠️ [{client_id}] JSON 형식이 아님: {raw_data}")

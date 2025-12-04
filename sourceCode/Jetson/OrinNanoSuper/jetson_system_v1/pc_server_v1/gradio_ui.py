@@ -58,24 +58,56 @@ class Gradio_ui:
     def _draw_annotations(self, frame, detections):
         """
         (그래픽 로직) 이미지에 박스와 텍스트를 그리는 메서드
+        [수정됨] Jetson 해상도와 PC 해상도 비율에 맞춰 좌표 자동 보정
         """
-        # 원본을 보존하기 위해 복사본 생성
         annotated_frame = frame.copy()
         
+        # ---------------------------------------------------------
+        # [설정 1] Jetson 카메라의 원본 해상도 (여기를 맞춰주세요!)
+        SOURCE_WIDTH = 1920  
+        SOURCE_HEIGHT = 1080 
+        
+        # [설정 2] 현재 PC 화면(Gradio)의 해상도
+        TARGET_WIDTH = self.frame_width  # 1280
+        TARGET_HEIGHT = self.frame_height # 720
+        
+        # [설정 3] 비율 계산 (PC화면크기 / 원본화면크기)
+        # 예: 1280 / 1920 = 0.66... (약 66%로 축소)
+        scale_x = TARGET_WIDTH / SOURCE_WIDTH
+        scale_y = TARGET_HEIGHT / SOURCE_HEIGHT
+        # ---------------------------------------------------------
+
         for obj in detections:
-            x, y, w, h = obj['bbox']
-            x1 = int(x-w/2)
-            y1 = int(y-h/2)
-            x2 = int(x+w/2)
-            y2 = int(y+h/2)
+            # bbox 데이터 안전하게 가져오기
+            bbox = obj.get('bbox', [])
+            if len(bbox) != 4: continue
+
+            # 1. Jetson에서 받은 원본 좌표 (Source 좌표)
+            ox, oy, ow, oh = bbox
+            
+            # 2. 비율을 곱해서 PC 화면 좌표로 변환 (Target 좌표)
+            # 여기가 변경된 핵심 부분입니다!
+            x = ox * scale_x
+            y = oy * scale_y
+            w = ow * scale_x
+            h = oh * scale_y
+
+            # 3. 그리기 좌표 계산 (중심점 -> 좌상단, 우하단 좌표)
+            x1 = int(x - w/2)
+            y1 = int(y - h/2)
+            x2 = int(x + w/2)
+            y2 = int(y + h/2)
+            
             color = self.colors
-            label = f"{obj['confidence']} (ID:{obj['object_id']})"
+            # 신뢰도와 ID 표시
+            label = f"{obj.get('confidence', 0):.2f} (ID:{obj.get('object_id', '?')})"
             
             # 사각형 그리기
             cv2.rectangle(annotated_frame, (x1, y1), (x2, y2), color, 2)
             
             # 텍스트 그리기
-            cv2.putText(annotated_frame, label, (x1, y1 - 10), cv2.FONT_HERSHEY_SIMPLEX, 0.6, color, 2)
+            cv2.putText(annotated_frame, label, (x1, y1 - 10), 
+                        cv2.FONT_HERSHEY_SIMPLEX, 0.6, color, 2)
             
         return annotated_frame
 
@@ -132,7 +164,7 @@ class Gradio_ui:
                     )
 
             # 타이머 설정
-            timer = gr.Timer(1)
+            timer = gr.Timer(0.033)
             timer.tick(
                 fn=self.update_dashboard,
                 inputs=None,

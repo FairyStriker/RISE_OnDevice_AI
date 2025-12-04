@@ -14,7 +14,7 @@ from jetson_comms import JetsonSender
 from object_detector import RTSPCamera
 
 # === 설정 값 ===
-SERVER_IP = "localhost" #서버주소에 맞게 변경할 예정
+SERVER_IP = "ksj.local" #서버주소에 맞게 변경할 예정
 SERVER_PORT = 8000
 CLIENT_ID = "JetsonOrinNano"
 
@@ -25,8 +25,8 @@ TARGET_CLASSES = [0] # 0: 사람
 CAMERAS_CONFIG = [
     {
         "id": "cam_01_front",
-        "url": "rtsp://admin:1234@192.168.1.101:554/stream1",
-        "roi": [[100, 100], [1000, 100], [1000, 600], [100, 600]] # ROI 좌표
+        "url": "rtsp:/ksj.local:8554/stream",
+        "roi": None # ROI 좌표
     },
     # 필요시 여기에 딕셔너리를 계속 추가하면 됩니다.
 ]
@@ -36,7 +36,7 @@ def main():
     # 1. YOLO 모델 로드 (한 번만 로드해서 공유)
     # Jetson에서는 'yolov8n.engine' 사용 권장
     print("모델 로딩 중...")
-    shared_model = YOLO('yolov8n.pt') 
+    shared_model = YOLO('/home/laheckaf/ssj/models/yolo_n.engine') 
     sender = JetsonSender(SERVER_IP,SERVER_PORT,CLIENT_ID)
 
     # 2. 카메라 객체 리스트 생성

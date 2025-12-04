@@ -124,7 +124,7 @@ class RTSPCamera:
 
         # 3. 반복문이 다 끝난 뒤, 탐지된 게 있으면 '한 번만' 전송
         if detected_list:
-            threading.Thread(target=self.send_batch_data, args=(detected_list,)).start()
+            self.send_batch_data(detected_list)
 
         return frame
 

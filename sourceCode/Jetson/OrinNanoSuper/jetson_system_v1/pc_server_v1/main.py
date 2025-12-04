@@ -27,4 +27,4 @@ app = gr.mount_gradio_app(app, demo, path="/")
 # 5. 서버 실행
 if __name__ == "__main__":
     print("🚀 서버 시작: http://localhost:8000")
-    uvicorn.run(app, host="0.0.0.0", port=8000)
+    uvicorn.run(app, host="0.0.0.0", port=8000, access_log=False)
