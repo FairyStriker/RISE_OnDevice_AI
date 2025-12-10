@@ -103,9 +103,5 @@ sudo rm -rf /usr/lib/python3/dist-packages/cv2*
 - 전원 연결 상태 유지
 - 설치 중단 시 `cd ~/opencv_build/opencv/build && sudo make install` 로 재개 가능
 
-## 로그 위치
-향상된 버전 사용 시:
-- `~/opencv_install_YYYYMMDD_HHMMSS.log`
-
 ## 지원
 문제 발생 시 로그 파일과 함께 문의
