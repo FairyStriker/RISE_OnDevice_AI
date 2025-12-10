@@ -8,7 +8,7 @@
 
 ## 제공 스크립트
 
-### install_opencv_jetson.sh
+### installer.sh
 - 단순하고 빠른 설치
 - 자동 재부팅 포함 (10초 대기)
 - 기본 에러 처리
@@ -16,10 +16,10 @@
 ## 사용 방법
 
 # 실행 권한 부여
-chmod +x install_opencv_jetson.sh
+chmod +x installer.sh
 
 # 실행
-./install_opencv_jetson.sh
+./installer.sh
 ```
 
 ## 설치 내용
