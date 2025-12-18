@@ -1,4 +1,4 @@
-### == YOLOv8 Benchmark Results on Jetson Orin Nano ==
+### == YOLOv8 OpenCV-Python Benchmark Results on Jetson Orin Nano Super ==
 | Model | Precision | Input Size | mAP(50-95) | mAP(50) | FPS | Avg Inference (ms) |
 | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
 | **YOLOv8n** | FP16 | 640x640 | 0.632 | 0.867 | 32.82 | 30.47 |
