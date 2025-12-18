@@ -20,7 +20,6 @@ def cleanup_processes(signum=None, frame=None):
     if flask_process: flask_process.terminate()
     if vlc_process: vlc_process.terminate()
     subprocess.run(["pkill", "-f", "vlc"], stderr=subprocess.DEVNULL)
-    print("[System] 안전하게 종료되었습니다.")
     sys.exit(0)
 
 def main():
@@ -29,7 +28,7 @@ def main():
     signal.signal(signal.SIGTERM, cleanup_processes)
 
     print("="*50)
-    print("   N100 AI 통합 서버 (끊김 방지 모드)")
+    print("N100 AI 통합 서버")
     print("="*50)
 
     # 1. 정리
@@ -90,7 +89,7 @@ def main():
         cleanup_processes()
 
     print("\n" + "="*50)
-    print("   🚀 끊김 없는 스트리밍 시작")
+    print("스트리밍 시작")
     print("   👉 RTSP: rtsp://192.168.0.52:8554/test")
     print("="*50)
 
