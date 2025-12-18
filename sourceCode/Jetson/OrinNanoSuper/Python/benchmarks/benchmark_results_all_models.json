@@ -1,0 +1,170 @@
+{
+    "yolov8n_fp16": {
+        "model_path": "/home/laheckaf/ssj/models/FP16/yolov8n_fp16.engine",
+        "img_size": 640,
+        "conf_threshold": 0.2,
+        "iou_threshold": 0.5,
+        "platform": "Jetson (aarch64)",
+        "timestamp": "2025-12-09 12:39:53",
+        "mAP50-95": 0.6323440191354119,
+        "mAP50": 0.8670116871679839,
+        "Precision": [
+            0.8185500112661533
+        ],
+        "Recall": [
+            0.8237679640699734
+        ],
+        "F1_Score": [
+            0.8211506984598005
+        ],
+        "FPS": 32.81626189012877,
+        "Avg_Inference_ms": 30.472696840001845
+    },
+    "yolov8s_fp16": {
+        "model_path": "/home/laheckaf/ssj/models/FP16/yolov8s_fp16.engine",
+        "img_size": 640,
+        "conf_threshold": 0.2,
+        "iou_threshold": 0.5,
+        "platform": "Jetson (aarch64)",
+        "timestamp": "2025-12-09 12:41:09",
+        "mAP50-95": 0.6667464936335203,
+        "mAP50": 0.8789403875401741,
+        "Precision": [
+            0.8362455531728703
+        ],
+        "Recall": [
+            0.8308168708771707
+        ],
+        "F1_Score": [
+            0.8335223729464587
+        ],
+        "FPS": 25.426486473317333,
+        "Avg_Inference_ms": 39.32906738999918
+    },
+    "yolov8m_fp16": {
+        "model_path": "/home/laheckaf/ssj/models/FP16/yolov8m_fp16.engine",
+        "img_size": 640,
+        "conf_threshold": 0.2,
+        "iou_threshold": 0.5,
+        "platform": "Jetson (aarch64)",
+        "timestamp": "2025-12-09 12:42:39",
+        "mAP50-95": 0.6778381616082823,
+        "mAP50": 0.8831336646447019,
+        "Precision": [
+            0.8333502373698506
+        ],
+        "Recall": [
+            0.8441471795042866
+        ],
+        "F1_Score": [
+            0.8387139620469157
+        ],
+        "FPS": 21.703460396579647,
+        "Avg_Inference_ms": 46.07560184999784
+    },
+    "yolov8l_fp16": {
+        "model_path": "/home/laheckaf/ssj/models/FP16/yolov8l_fp16.engine",
+        "img_size": 640,
+        "conf_threshold": 0.2,
+        "iou_threshold": 0.5,
+        "platform": "Jetson (aarch64)",
+        "timestamp": "2025-12-09 12:44:22",
+        "mAP50-95": 0.6834971870052649,
+        "mAP50": 0.882324053381786,
+        "Precision": [
+            0.83294716464943
+        ],
+        "Recall": [
+            0.8419718581042263
+        ],
+        "F1_Score": [
+            0.8374351982336712
+        ],
+        "FPS": 20.132050487804356,
+        "Avg_Inference_ms": 49.67203915000027
+    },
+    "yolov8n_int8": {
+        "model_path": "/home/laheckaf/ssj/models/INT8/yolov8n_int8.engine",
+        "img_size": 640,
+        "conf_threshold": 0.2,
+        "iou_threshold": 0.5,
+        "platform": "Jetson (aarch64)",
+        "timestamp": "2025-12-09 12:46:13",
+        "mAP50-95": 0.5897571386372783,
+        "mAP50": 0.8565097250695136,
+        "Precision": [
+            0.8132538104705103
+        ],
+        "Recall": [
+            0.8187610501384395
+        ],
+        "F1_Score": [
+            0.8159981382050302
+        ],
+        "FPS": 37.69634455354016,
+        "Avg_Inference_ms": 26.527771109999776
+    },
+    "yolov8s_int8": {
+        "model_path": "/home/laheckaf/ssj/models/INT8/yolov8s_int8.engine",
+        "img_size": 640,
+        "conf_threshold": 0.2,
+        "iou_threshold": 0.5,
+        "platform": "Jetson (aarch64)",
+        "timestamp": "2025-12-09 12:47:12",
+        "mAP50-95": 0.531919177613857,
+        "mAP50": 0.8723436668458032,
+        "Precision": [
+            0.827913815360304
+        ],
+        "Recall": [
+            0.8172206855641934
+        ],
+        "F1_Score": [
+            0.8225324985848878
+        ],
+        "FPS": 30.480757253034408,
+        "Avg_Inference_ms": 32.80758386999878
+    },
+    "yolov8m_int8": {
+        "model_path": "/home/laheckaf/ssj/models/INT8/yolov8m_int8.engine",
+        "img_size": 640,
+        "conf_threshold": 0.2,
+        "iou_threshold": 0.5,
+        "platform": "Jetson (aarch64)",
+        "timestamp": "2025-12-09 12:48:23",
+        "mAP50-95": 0.44141539182483747,
+        "mAP50": 0.8587655360980393,
+        "Precision": [
+            0.8135735262495263
+        ],
+        "Recall": [
+            0.8140821234522341
+        ],
+        "F1_Score": [
+            0.8138277453896273
+        ],
+        "FPS": 23.65319749015026,
+        "Avg_Inference_ms": 42.277582149999944
+    },
+    "yolov8l_int8": {
+        "model_path": "/home/laheckaf/ssj/models/INT8/yolov8l_int8.engine",
+        "img_size": 640,
+        "conf_threshold": 0.2,
+        "iou_threshold": 0.5,
+        "platform": "Jetson (aarch64)",
+        "timestamp": "2025-12-09 12:50:07",
+        "mAP50-95": 0.45386888563652034,
+        "mAP50": 0.8652398151000308,
+        "Precision": [
+            0.8154775952530565
+        ],
+        "Recall": [
+            0.8194615872168662
+        ],
+        "F1_Score": [
+            0.8174647371730678
+        ],
+        "FPS": 22.18993085790045,
+        "Avg_Inference_ms": 45.06548516999828
+    }
+}

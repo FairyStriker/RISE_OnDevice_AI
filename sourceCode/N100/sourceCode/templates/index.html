@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RISE OnDevice AI</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #111827;       /* 배경 */
+            --card-bg: #1f2937;        /* 카드 배경 */
+            --text-main: #f3f4f6;      /* 흰색 텍스트 */
+            --text-sub: #9ca3af;       /* 회색 텍스트 */
+            --accent: #3b82f6;         /* 포인트 블루 */
+            --border: #374151;         /* 테두리 */
+            --success: #10b981;        /* 초록 */
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: 'Inter', sans-serif;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        /* --- Header (수정됨) --- */
+        header {
+            background-color: var(--card-bg);
+            border-bottom: 1px solid var(--border);
+            padding: 0 2rem;
+            display: flex;
+            align-items: center; /* 수직 중앙 정렬 */
+            height: 64px;
+            flex-shrink: 0;
+            gap: 2rem; /* 요소 간 간격 */
+        }
+
+        /* 1. 로고 (왼쪽) */
+        .brand { font-size: 1.25rem; font-weight: 700; letter-spacing: -0.5px; white-space: nowrap; }
+        .brand span { color: var(--accent); }
+
+        /* 2. 모델 선택기 (중앙 - 로고 옆) */
+        .model-control {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background-color: rgba(0,0,0,0.2);
+            padding: 6px 12px;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+        }
+
+        .model-label { font-size: 0.85rem; color: var(--text-sub); font-weight: 500; }
+        
+        select {
+            background-color: var(--bg-color);
+            color: white;
+            border: 1px solid var(--border);
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            outline: none;
+            cursor: pointer;
+        }
+        select:hover { border-color: var(--accent); }
+
+        /* 3. 상태 배지 (오른쪽 끝으로 밀기) */
+        .header-right { margin-left: auto; }
+        
+        .status-badge {
+            font-size: 0.85rem;
+            background: rgba(59, 130, 246, 0.2);
+            color: #60a5fa;
+            padding: 4px 12px;
+            border-radius: 9999px;
+            font-weight: 500;
+        }
+
+        /* --- Main Layout --- */
+        .container { display: flex; height: calc(100vh - 64px); }
+
+        /* 영상 구역 */
+        .video-section {
+            flex-grow: 1;
+            background-color: var(--bg-color);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 40px;
+        }
+
+        .video-wrapper {
+            width: 640px; height: 640px;
+            background-color: #000;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 20px 25px -5px rgba(0,0,0,0.5);
+            border: 1px solid var(--border);
+            display: flex; justify-content: center; align-items: center;
+        }
+        .video-wrapper img { width: 100%; height: 100%; object-fit: contain; display: block; }
+
+        /* 데이터 사이드바 */
+        .data-sidebar {
+            width: 400px;
+            background-color: var(--card-bg);
+            border-left: 1px solid var(--border);
+            display: flex; flex-direction: column;
+            padding: 1.5rem; gap: 1.5rem;
+            flex-shrink: 0;
+        }
+
+        /* 통계 카드 */
+        .stats-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+        .stat-card {
+            background-color: rgba(255,255,255,0.03);
+            border: 1px solid var(--border);
+            padding: 1rem; border-radius: 8px;
+        }
+        .stat-label { font-size: 0.75rem; color: var(--text-sub); margin-bottom: 0.5rem; text-transform: uppercase; }
+        .stat-value { font-size: 1.5rem; font-weight: 600; color: var(--text-main); }
+        .stat-value.fps { color: var(--accent); }
+
+        /* 테이블 */
+        .table-header { font-size: 0.9rem; font-weight: 600; color: var(--text-sub); margin-bottom: 0.5rem; }
+        .table-container {
+            flex-grow: 1; overflow-y: auto;
+            border: 1px solid var(--border); border-radius: 8px;
+            background-color: rgba(0,0,0,0.2);
+        }
+        table { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
+        thead th {
+            background-color: rgba(255,255,255,0.05); color: var(--text-sub);
+            padding: 10px; text-align: left; position: sticky; top: 0; z-index: 10;
+        }
+        tbody td { padding: 10px; border-bottom: 1px solid var(--border); color: var(--text-main); }
+        .coord { font-family: monospace; color: var(--text-sub); letter-spacing: -0.5px; }
+
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="brand">RISE <span>OnDevice AI</span></div>
+
+        <div class="model-control">
+            <span class="model-label">Active Model:</span>
+            <select id="modelSelect">
+                <optgroup label="FP16 Models (Standard)">
+                    <option value="n_fp16">YOLOv8 Nano (FP16)</option>
+                    <option value="s_fp16">YOLOv8 Small (FP16)</option>
+                    <option value="m_fp16">YOLOv8 Medium (FP16)</option>
+                    <option value="l_fp16">YOLOv8 Large (FP16)</option>
+                </optgroup>
+                <optgroup label="INT8 Models (Fastest)">
+                    <option value="n_int8">YOLOv8 Nano (INT8)</option>
+                    <option value="s_int8">YOLOv8 Small (INT8)</option>
+                    <option value="m_int8">YOLOv8 Medium (INT8)</option>
+                    <option value="l_int8">YOLOv8 Large (INT8)</option>
+                </optgroup>
+            </select>
+            <span id="currentModelDisplay" style="font-size:0.8rem; color:#10b981; margin-left:5px;">● Ready</span>
+        </div>
+
+        <div class="header-right">
+            <div class="status-badge">VLC Stream</div>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="video-section">
+            <div class="video-wrapper">
+                <img src="{{ url_for('video_feed') }}" alt="Waiting for stream...">
+            </div>
+        </div>
+
+        <aside class="data-sidebar">
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-label">System Time</div>
+                    <div class="stat-value" id="time">--:--:--</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-label">Jetson FPS</div>
+                    <div class="stat-value fps" id="fps">0.0</div>
+                </div>
+                <div class="stat-card" style="grid-column: span 2;">
+                    <div class="stat-label">Detected Objects</div>
+                    <div class="stat-value" id="count">0</div>
+                </div>
+            </div>
+
+            <div style="display:flex; flex-direction:column; flex-grow:1; overflow:hidden;">
+                <div class="table-header">Real-time Detections</div>
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th width="15%">ID</th>
+                                <th width="15%">Class</th>
+                                <th width="25%">Conf</th>
+                                <th width="45%">BBox</th>
+                            </tr>
+                        </thead>
+                        <tbody id="obj-table"></tbody>
+                    </table>
+                </div>
+            </div>
+        </aside>
+    </div>
+
+    <script>
+        const modelSelect = document.getElementById('modelSelect');
+        const currentModelDisplay = document.getElementById('currentModelDisplay');
+
+        // 모델 변경 요청
+        modelSelect.addEventListener('change', function() {
+            const selectedModel = this.value;
+            currentModelDisplay.innerText = "Applying..."; // 변경 중 표시
+            currentModelDisplay.style.color = "#f59e0b"; // 노란색
+
+            fetch('/set_model', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ model: selectedModel })
+            })
+            .then(res => res.json())
+            .then(data => console.log(data));
+        });
+
+        // 데이터 갱신
+        setInterval(() => {
+            fetch('/data_feed')
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('time').innerText = data.timestamp;
+                    document.getElementById('fps').innerText = data.fps;
+                    
+                    // 현재 적용된 모델 표시
+                    if (data.current_model) {
+                        // 선택한 값과 서버 값이 일치하면 초록색 (완료)
+                        if (data.current_model === modelSelect.value) {
+                            currentModelDisplay.innerText = "● Active";
+                            currentModelDisplay.style.color = "#10b981";
+                        }
+                        
+                        // 다른 탭에서 바꿨을 수도 있으니 UI 동기화 (내가 선택 중이지 않을 때만)
+                        if (document.activeElement !== modelSelect) {
+                            modelSelect.value = data.current_model;
+                        }
+                    }
+
+                    const objects = data.objects || [];
+                    document.getElementById('count').innerText = objects.length;
+                    
+                    const tbody = document.getElementById('obj-table');
+                    if (objects.length === 0) {
+                        tbody.innerHTML = `<tr><td colspan="4" style="text-align:center; color:#6b7280; padding:20px;">No objects detected</td></tr>`;
+                    } else {
+                        let html = "";
+                        objects.forEach(obj => {
+                            const conf = Math.round(obj.conf * 100);
+                            const bbox = `[${parseInt(obj.bbox[0])}, ${parseInt(obj.bbox[1])}, ${parseInt(obj.bbox[2])}, ${parseInt(obj.bbox[3])}]`;
+                            const barColor = conf > 80 ? '#10b981' : (conf > 50 ? '#3b82f6' : '#f59e0b');
+                            html += `<tr>
+                                <td><span style="color:#60a5fa; font-weight:bold;">#${obj.id}</span></td>
+                                <td>${obj.class}</td>
+                                <td><div style="display:flex; align-items:center; gap:8px;"><div style="flex-grow:1; height:4px; background:#374151; border-radius:2px;"><div style="width:${conf}%; height:100%; background:${barColor}; border-radius:2px;"></div></div><span style="font-size:0.75rem; width:24px;">${conf}</span></div></td>
+                                <td class="coord">${bbox}</td>
+                            </tr>`;
+                        });
+                        tbody.innerHTML = html;
+                    }
+                })
+                .catch(err => console.error(err));
+        }, 500);
+    </script>
+</body>
+</html>
