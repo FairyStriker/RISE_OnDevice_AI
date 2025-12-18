@@ -10,9 +10,9 @@
 | **YOLOv8l** | FP16 | 640x640 | 0.683 | 0.882 | 20.13 | 49.67 |
 | **YOLOv8l** | INT8 | 640x640 | 0.454 | 0.865 | 22.20 | 45.07 |
 
-> **Note:**
-> * **Platform:** JetsonOrinNanoSuper DeveloperKit (aarch64)
-> * OS = Jetpack6.2.1(rev1)
+> **Note**
+> * **Platform:** JetsonOrinNanoSuper Developer Kit (aarch64)
+> * OS = Jetpack6.1(rev1) + DeepStream7.1
 > * **Date:** 2025-12-10
 > * **Conf** = 0.2 / **IoU** = 0.5
 
