@@ -16,6 +16,5 @@
 > * **Date:** 2025-12-10
 > * **Conf** = 0.2 / **IoU** = 0.5
 
-https://house-audit-imported-towards.trycloudflare.com
-
-<img width="300" height="300" alt="Image" src="https://github.com/user-attachments/assets/bb0d27bb-3f24-4003-944b-c76a2bc898d8" />
+[ HTTP Link ](https://gifts-represent-working-classification.trycloudflare.com/)
+<img width="300" height="300" alt="Image" src="https://github.com/user-attachments/assets/a82d9883-16a3-4057-b56c-a16982d1f29a" />
