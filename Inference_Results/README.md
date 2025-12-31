@@ -1,21 +1,22 @@
-[ HTTP Link ](https://gifts-represent-working-classification.trycloudflare.com/)
+src="https://github.com/user-attachments/assets/6d712732-4b04-4a47-b6f2-87a777af11bc" />[ HTTP Link ](https://gifts-represent-working-classification.trycloudflare.com/)
 
 <img width="300" height="300" alt="Image" src="https://github.com/user-attachments/assets/a82d9883-16a3-4057-b56c-a16982d1f29a" />
 
-## FP16
-| Model | Precision | Input Size | mAP(50-95) | mAP(50) | FPS | Avg Inference (ms) |
-| :---: | :---: | :---: | :---: | :---: | :---: | :---: |
-| **YOLOv8n** | FP16 | 640x640 | 0.632 | 0.867 | 32.82 | 30.47 |
-| **YOLOv8s** | FP16 | 640x640 | 0.667 | 0.879 | 25.43 | 39.33 |
-| **YOLOv8m** | FP16 | 640x640 | 0.678 | 0.883 | 21.70 | 46.08 |
-| **YOLOv8l** | FP16 | 640x640 | 0.683 | 0.882 | 20.13 | 49.67 |
-## INT8
-| Model | Precision | Input Size | mAP(50-95) | mAP(50) | FPS | Avg Inference (ms) |
-| :---: | :---: | :---: | :---: | :---: | :---: | :---: |
-| **YOLOv8n** | INT8 | 640x640 | 0.590 | 0.857 | 37.70 | 26.53 |
-| **YOLOv8s** | INT8 | 640x640 | 0.532 | 0.872 | 30.48 | 32.81 |
-| **YOLOv8m** | INT8 | 640x640 | 0.441 | 0.859 | 23.65 | 42.28 |
-| **YOLOv8l** | INT8 | 640x640 | 0.454 | 0.865 | 22.20 | 45.07 |
+### == YOLOv8 OpenCV-Python Benchmark Results on Jetson Orin Nano Super ==
+#### FP16
+| Model | Precision | Input Size | mAP(50-95) | mAP(50) | F1 | Precision | Recall | FPS | Avg Inference (ms) |
+| :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
+| **YOLOv8n** | FP16 | 640x640 | 0.632 | 0.867 | 0.8211 | 0.818 | 0.8237 | 32.82 | 30.47 |
+| **YOLOv8s** | FP16 | 640x640 | 0.667 | 0.879 | 0.8335 | 0.8362 | 0.8308 | 25.43 | 39.33 |
+| **YOLOv8m** | FP16 | 640x640 | 0.678 | 0.883 | 0.8387 | 0.8333 | 0.8441 | 21.70 | 46.08 |
+| **YOLOv8l** | FP16 | 640x640 | 0.683 | 0.882 | 0.8374 | 0.8329 | 0.8419 | 20.13 | 49.67 |
+#### INT8
+| Model | Precision | Input Size | mAP(50-95) | mAP(50) | F1 | Precision | Recall | FPS | Avg Inference (ms) |
+| :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
+| **YOLOv8n** | INT8 | 640x640 | 0.590 | 0.857 | 0.8159 | 0.8132 | 0.8187 | 37.70 | 26.53 |
+| **YOLOv8s** | INT8 | 640x640 | 0.532 | 0.872 | 0.8225 | 0.8279 | 0.8172 | 30.48 | 32.81 |
+| **YOLOv8m** | INT8 | 640x640 | 0.441 | 0.859 | 0.8138 | 0.8135 | 0.8140 | 23.65 | 42.28 |
+| **YOLOv8l** | INT8 | 640x640 | 0.454 | 0.865 | 0.8174 | 0.8154 | 0.8194 | 22.20 | 45.07 |
 
 > **Note**
 > * **Platform:** JetsonOrinNanoSuper Developer Kit (aarch64)
@@ -24,14 +25,14 @@
 > * **Conf** = 0.2 / **IoU** = 0.5
 
 ### == YOLOv8(engine) Benchmark Results Jetson AGX Orin ==
-## FP16
+#### FP16
 | Model | Precision | Input Size | mAP(50) | F1 | Precision | Recall | FPS |
 | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
 | **YOLOv8n** | FP16 | 640x640 | 0.8632 | 0.819 | 0.931 | 0.84 | 44.56 |
 | **YOLOv8s** | FP16 | 640x640 | 0.8738 | 0.8301 | 0.958 | 0.86 | 42.77 |
 | **YOLOv8m** | FP16 | 640x640 | 0.8788 | 0.8342 | 0.949 | 0.86 | 37.33 |
 | **YOLOv8l** | FP16 | 640x640 | 0.878 | 0.8344 | 0.969 | 0.86 | 33.13 |
-## INT8
+#### INT8
 | Model | Precision | Input Size | mAP(50) | F1 | Precision | Recall | FPS |
 | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
 | **YOLOv8n** | INT8 | 640x640 | 0.8541 | 0.8144 | 0.918 | 0.82 | 45.43 |
@@ -46,7 +47,7 @@
 > * **Conf** = 0.2 / **IoU** = 0.5
 
 ### == YOLOv8(rknn) C++ Benchmark Results on Odroid M1 ==
-## FP16
+#### FP16
 | Model | Precision | Input Size | mAP(50) | F1 | Precision | Recall | FPS | Avg Inference (ms) |
 | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
 | **YOLOv8n** | FP16 | 640x640 | 0.7752 | 0.8104 | 0.8132 | 0.8076 | 8.27 | 120.96 |
