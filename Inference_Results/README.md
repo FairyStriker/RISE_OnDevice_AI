@@ -2,16 +2,19 @@
 
 <img width="300" height="300" alt="Image" src="https://github.com/user-attachments/assets/a82d9883-16a3-4057-b56c-a16982d1f29a" />
 
-### == YOLOv8 OpenCV-Python Benchmark Results on Jetson Orin Nano Super ==
+## FP16
 | Model | Precision | Input Size | mAP(50-95) | mAP(50) | FPS | Avg Inference (ms) |
 | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
 | **YOLOv8n** | FP16 | 640x640 | 0.632 | 0.867 | 32.82 | 30.47 |
-| **YOLOv8n** | INT8 | 640x640 | 0.590 | 0.857 | 37.70 | 26.53 |
 | **YOLOv8s** | FP16 | 640x640 | 0.667 | 0.879 | 25.43 | 39.33 |
-| **YOLOv8s** | INT8 | 640x640 | 0.532 | 0.872 | 30.48 | 32.81 |
 | **YOLOv8m** | FP16 | 640x640 | 0.678 | 0.883 | 21.70 | 46.08 |
-| **YOLOv8m** | INT8 | 640x640 | 0.441 | 0.859 | 23.65 | 42.28 |
 | **YOLOv8l** | FP16 | 640x640 | 0.683 | 0.882 | 20.13 | 49.67 |
+## INT8
+| Model | Precision | Input Size | mAP(50-95) | mAP(50) | FPS | Avg Inference (ms) |
+| :---: | :---: | :---: | :---: | :---: | :---: | :---: |
+| **YOLOv8n** | INT8 | 640x640 | 0.590 | 0.857 | 37.70 | 26.53 |
+| **YOLOv8s** | INT8 | 640x640 | 0.532 | 0.872 | 30.48 | 32.81 |
+| **YOLOv8m** | INT8 | 640x640 | 0.441 | 0.859 | 23.65 | 42.28 |
 | **YOLOv8l** | INT8 | 640x640 | 0.454 | 0.865 | 22.20 | 45.07 |
 
 > **Note**
@@ -20,7 +23,30 @@
 > * **Date:** 2025-12-10
 > * **Conf** = 0.2 / **IoU** = 0.5
 
+### == YOLOv8(engine) Benchmark Results Jetson AGX Orin ==
+## FP16
+| Model | Precision | Input Size | mAP(50) | F1 | Precision | Recall | FPS |
+| :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
+| **YOLOv8n** | FP16 | 640x640 | 0.8632 | 0.819 | 0.931 | 0.84 | 44.56 |
+| **YOLOv8s** | FP16 | 640x640 | 0.8738 | 0.8301 | 0.958 | 0.86 | 42.77 |
+| **YOLOv8m** | FP16 | 640x640 | 0.8788 | 0.8342 | 0.949 | 0.86 | 37.33 |
+| **YOLOv8l** | FP16 | 640x640 | 0.878 | 0.8344 | 0.969 | 0.86 | 33.13 |
+## INT8
+| Model | Precision | Input Size | mAP(50) | F1 | Precision | Recall | FPS |
+| :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
+| **YOLOv8n** | INT8 | 640x640 | 0.8541 | 0.8144 | 0.918 | 0.82 | 45.43 |
+| **YOLOv8s** | INT8 | 640x640 | 0.8638 | 0.8185 | 0.98 | 0.86 | 44.13 |
+| **YOLOv8m** | INT8 | 640x640 | 0.8562 | 0.8106 | 0.99 | 0.87 | 40.17 |
+| **YOLOv8l** | INT8 | 640x640 | 0.8599 | 0.8124 | 1.0 | 0.88 | 37.84 |
+
+> **Note**
+> * **Platform:** Jetson AGX Orin
+> * OS = Ubuntu 22.04 Jetpack 6.1
+> * **Date:** 2025-12-26
+> * **Conf** = 0.2 / **IoU** = 0.5
+
 ### == YOLOv8(rknn) C++ Benchmark Results on Odroid M1 ==
+## FP16
 | Model | Precision | Input Size | mAP(50) | F1 | Precision | Recall | FPS | Avg Inference (ms) |
 | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
 | **YOLOv8n** | FP16 | 640x640 | 0.7752 | 0.8104 | 0.8132 | 0.8076 | 8.27 | 120.96 |
