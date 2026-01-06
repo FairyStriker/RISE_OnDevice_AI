@@ -44,8 +44,21 @@ class DeepStreamPipeline:
         # 3. Inference & OSD
         pgie = Gst.ElementFactory.make("nvinfer", "primary-inference")
         pgie.set_property("config-file-path", config.MODEL_CONFIG)
+
+        # 1. 엘리먼트 생성 (pgie 다음에 추가)
+        tracker = Gst.ElementFactory.make("nvtracker", "tracker")
+
+        # 2. 트래커 설정 (공식 라이브러리 설정)
+        # 젯슨의 경우 아래 경로에 기본 라이브러리가 있습니다.
+        tracker.set_property('ll-lib-file', '/opt/nvidia/deepstream/deepstream/lib/libnvds_nvmultiobjecttracker.so')
+        tracker.set_property('ll-config-file', 'config_tracker_IOU.txt') # 설정 파일 필요
+        tracker.set_property('tracker-width', 640)
+        tracker.set_property('tracker-height', 384)
+        tracker.set_property('display-tracking-id', 1)
+
         nvvidconv1 = Gst.ElementFactory.make("nvvideoconvert", "convert1")
         nvvidconv1.set_property("nvbuf-memory-type", 0)
+        nvvidconv1.set_property("compute-hw", 1)       # VIC(Video Image Compositor) 가속기 사용
         nvosd = Gst.ElementFactory.make("nvdsosd", "onscreendisplay")
         nvosd.set_property("display-text", 1)
         nvosd.set_property("process-mode", 0)
@@ -85,13 +98,14 @@ class DeepStreamPipeline:
         udpsink.set_property("sync", True)
 
         # 엘리먼트 추가 및 연결
-        elements = [source, streammux, pgie, nvvidconv1, nvosd, 
+        elements = [source, streammux, pgie, tracker, nvvidconv1, nvosd, 
                     nvvidconv2, videoconvert,queue_cpu, capsfilter, encoder, rtppay, queue_safety, udpsink]
         for e in elements: pipeline.add(e)
 
         source.connect("pad-added", self._on_pad_added, streammux)
         streammux.link(pgie)
-        pgie.link(nvvidconv1)
+        pgie.link(tracker)
+        tracker.link(nvvidconv1)
         nvvidconv1.link(nvosd)
         nvosd.link(nvvidconv2)
         nvvidconv2.link(videoconvert)
