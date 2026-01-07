@@ -1,7 +1,7 @@
 ### == YOLOv8(*.engine) OpenCV-Python Benchmark Results on Jetson AGX Xavier ==
 #### FP16
 
-| Model | Quantization | Input Size | mAP(50-95) | mAP(50) | F1_Score | Precision | Recall | FPS | Avg Inference (ms) |
+| Model | Quantization | Input Size | mAP(50-95) | mAP(50) | F1 Score | Precision | Recall | FPS | Avg Inference (ms) |
 | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
 | **YOLOv8n** | FP16 | 640x640 | 0.5915 | 0.8794 | 0.8124 | 0.8174 | 0.8075 | 36.02 | 5.11 |
 | **YOLOv8s** | FP16 | 640x640 | 0.6268 | 0.8922 | 0.8269 | 0.8324 | 0.8215 | 31.68 | 9.07 |
@@ -10,7 +10,7 @@
 
 #### INT8
 
-| Model | Quantization | Input Size | mAP(50-95) | mAP(50) | F1_Score | Precision | Recall | FPS | Avg Inference (ms) |
+| Model | Quantization | Input Size | mAP(50-95) | mAP(50) | F1 Score | Precision | Recall | FPS | Avg Inference (ms) |
 | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
 | **YOLOv8n** | INT8 | 640x640 | 0.5473 | 0.8719 | 0.8051 | 0.8095 | 0.8009 | 38.30 | 3.90 |
 | **YOLOv8s** | INT8 | 640x640 | 0.4798 | 0.8442 | 0.7883 | 0.7823 | 0.7945 | 35.36 | 5.93 |
