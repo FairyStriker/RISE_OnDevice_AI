@@ -3,7 +3,15 @@
 </p>
 
 # RISE_OnDevice_AI_Project
-### Task
+
+## Task
 - Person Object Detection in Haeundae Beach Surveillance Camera Using Various YOLOv8 Models
 - Fire & Smoke Detection in Mountain Surveillance Camera Using Various YOLOv8 Models
 - Building  Real-time Web & Data Servers Based on YOLOv8 Models
+
+## Member
+- 이강민 qertiuy5377@naver.com
+- 송승진
+- 권혁준
+- 이동혁
+- 김호건
