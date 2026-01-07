@@ -99,7 +99,7 @@ def run_master_benchmark():
             print(f"ERROR {filename}: {e}")
 
     # 결과 저장
-    save_path = f'master_benchmark_{timestamp}.json'
+    save_path = f'benchmark_result_{timestamp}.json'
     with open(save_path, 'w') as f:
         json.dump(final_results, f, indent=4)
 
