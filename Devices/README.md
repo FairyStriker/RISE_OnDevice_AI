@@ -1,6 +1,6 @@
 # RISE_OnDevice_AI_Project
 
-## Fine-Tunning YOLO Model
+## Fine-Tuned YOLO Model
 - YOLOv8n
 - YOLOv8s
 - YOLOv8m 
