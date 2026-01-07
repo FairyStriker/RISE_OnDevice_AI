@@ -1,4 +1,4 @@
-<img width="298" height="288" alt="Image" src="https://github.com/user-attachments/assets/e910a47d-2e1a-4f77-9bf7-8b9cafbac590" />
+<img width="245" height="249" alt="Image" src="https://github.com/user-attachments/assets/7450c7b5-72f4-4711-80f6-351956b9dc9c" />
 
 # == **RISE_OnDevice_AI_Project** ==
 ## Task
