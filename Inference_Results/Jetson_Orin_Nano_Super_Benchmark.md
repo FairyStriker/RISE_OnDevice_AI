@@ -1,4 +1,4 @@
-### == YOLOv8 OpenCV-Python Benchmark Results on Jetson Orin Nano Super ==
+### == YOLOv8(*.engine) OpenCV-Python Benchmark Results on Jetson Orin Nano Super ==
 #### FP16
 | Model | Quantization | Input Size | mAP(50-95) | mAP(50) | F1 | Precision | Recall | FPS | Avg Inference (ms) |
 | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
