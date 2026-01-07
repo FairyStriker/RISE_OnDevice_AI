@@ -1,8 +1,8 @@
 # OpenCV 4.11.0 Jetson Orin Nano 자동 설치 스크립트
 
 ## 시스템 요구사항
-- NVIDIA Jetson Orin Nano
-- JetPack 6.0 또는 6.1 (Ubuntu 22.04)
+- NVIDIA Jetson Orin Nano Super
+- JetPack 6.1 (Ubuntu 22.04)
 - 최소 10GB 여유 공간
 - 인터넷 연결
 
@@ -101,7 +101,3 @@ sudo rm -rf /usr/lib/python3/dist-packages/cv2*
 - 설치 중 시스템이 느려질 수 있음
 - 충분한 냉각 확보 필요
 - 전원 연결 상태 유지
-- 설치 중단 시 `cd ~/opencv_build/opencv/build && sudo make install` 로 재개 가능
-
-## 지원
-문제 발생 시 로그 파일과 함께 문의
