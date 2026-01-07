@@ -9,7 +9,7 @@
 ## EdgeDevice
 - Jetson AGX Orin 64GB
 - Jetson Orin Nano Super 8GB
-- Jetson Xavier 32GB
+- Jetson AGX Xavier 32GB
 - ODROID M2 16GB
 - ODROID M1 (4GB, 8GB)
 - RaspberryPi 5 + Hailo-8
