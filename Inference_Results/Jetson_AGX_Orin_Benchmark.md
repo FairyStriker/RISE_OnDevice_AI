@@ -1,4 +1,4 @@
-### == YOLOv8(engine) Benchmark Results Jetson AGX Orin ==
+### == YOLOv8 OpenCV-Python Benchmark Results on Jetson AGX Orin ==
 #### FP16
 | Model | Quantization | Input Size | mAP(50) | F1 | Precision | Recall | FPS |
 | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
