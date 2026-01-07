@@ -16,6 +16,6 @@
 
 > **Note**
 > * **Platform:** JetsonOrinNanoSuper Developer Kit (aarch64)
-> * OS = Jetpack6.1(rev1) + DeepStream7.1
+> * OS = Ubuntu 22.04 Jetpack 6.1
 > * **Date:** 2025-12-10
 > * **Conf** = 0.2 / **IoU** = 0.5
