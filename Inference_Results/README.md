@@ -83,7 +83,7 @@
 
 ### == YOLOv8(*.rknn) C++ Benchmark Results on Odroid M1 ==
 #### FP16
-| Model | Quantization | Input Size | mAP(50) | F1 | Precision | Recall | FPS | Avg Inference (ms) |
+| Model | Quantization | Input Size | mAP(50) | F1 Score | Precision | Recall | FPS | Avg Inference (ms) |
 | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
 | **YOLOv8n** | FP16 | 640x640 | 0.7752 | 0.8104 | 0.8132 | 0.8076 | 8.27 | 120.96 |
 | **YOLOv8s** | FP16 | 640x640 | 0.7002 | 0.8088 | 0.8351 | 0.7842 | 3.51 | 285.21 |
@@ -97,7 +97,7 @@
 > * **Conf** = 0.2 / **IoU** = 0.5
 
 ### == YOLOv8(*.hef) OpenCV-Python Benchmark Results on Rasberrypi 5 ==
-|    Model    | Quantization | Input Size | mAP@50 | mAP@50-95 |   F1  | Precision | Recall |    FPS    |
+|    Model    | Quantization | Input Size | mAP@50 | mAP@50-95 |   F1 Score  | Precision | Recall |    FPS   |
 | :---------: | :----------: | :--------: | :----: | :-------: | :---: | :-------: | :----: | :-------: |
 | **YOLOv8n** |     FP16     |   640×640  |  0.869 |   0.595   | 0.805 |   0.810   |  0.800 | **5.27** |
 | **YOLOv8s** |     FP16     |   640×640  |  0.892 |   0.647   | 0.829 |   0.833   |  0.826 | **2.17** |
