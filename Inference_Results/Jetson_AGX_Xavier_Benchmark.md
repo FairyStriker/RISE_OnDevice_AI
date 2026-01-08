@@ -18,7 +18,7 @@
 | **YOLOv8l** | INT8 | 640x640 | 0.4314 | 0.8003 | 0.7610 | 0.7337 | 0.7903 | 25.00 | 17.92 |
 
 > **Note**
-> * **Platform:** JetsonOrinNanoSuper Developer Kit (aarch64)
+> * **Platform:** Jetson AGX Xavier (aarch64)
 > * OS = Ubuntu 20.04 Jetpack 5.1.5
 > * **Date:** 2026-01-07
 > * **Conf** = 0.2 / **IoU** = 0.5

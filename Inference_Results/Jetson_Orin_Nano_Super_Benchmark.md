@@ -1,5 +1,4 @@
 ### == YOLOv8(*.engine) OpenCV-Python Benchmark Results on Jetson Orin Nano Super ==
-요청하신 데이터를 템플릿에 맞게 정리한 결과입니다.
 
 #### FP16
 | Model | Quantization | Input Size | mAP(50-95) | mAP(50) | F1 Score | Precision | Recall | FPS | Avg Inference (ms) |
@@ -18,7 +17,7 @@
 | **YOLOv8l** | INT8 | 640x640 | 0.4004 | 0.7716 | 0.7448 | 0.7017 | 0.7935 | 14.23 | 25.80 |
 
 > **Note**
-> * **Platform:** JetsonOrinNanoSuper Developer Kit (aarch64)
+> * **Platform:** Jetson Orin Nano Super (aarch64)
 > * OS = Ubuntu 22.04 Jetpack 6.1
 > * **Date:** 2025-12-10
 > * **Conf** = 0.2 / **IoU** = 0.5
