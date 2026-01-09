@@ -71,6 +71,14 @@ class ModelRegistry:
     def get_all_models(self):
         """대시보드용: 전체 모델 리스트 반환"""
         return self._load()
+    
+    def delete_model(self, version):
+        version_str = str(version)
+        if version_str in self.data["history"]:
+            del self.data["history"][version_str]
+            self._save() # 변경사항을 json 파일 등에 물리적으로 저장하는 함수 호출 필수!
+            return True
+        return False
 
 # 싱글톤 인스턴스 생성
 registry = ModelRegistry()

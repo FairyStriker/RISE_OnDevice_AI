@@ -31,4 +31,4 @@ app.mount("/", StaticFiles(directory=STATIC_DIR, html=True), name="static")
 
 if __name__ == "__main__":
     print(f"🚀 [Server] MediaMTX 연동 모드로 PC 서버 시작")
-    uvicorn.run("main:app", host="0.0.0.0", port=8000, reload=False)
+    uvicorn.run("main:app", host="0.0.0.0", port=8000, reload=False, access_log=False)

@@ -60,7 +60,35 @@ def activate_version(version: int):
 
 @router.delete("/api/models/{version}")
 def delete_model(version: int):
-    """[추가: 모델 삭제 요청 반영]"""
+    """[Web] 모델 정보 및 실제 파일 삭제"""
+    
+    # 1. 삭제 전 모델 정보 가져오기 (파일 경로 확인용)
+    all_models = registry.get_all_models()
+    model_info = all_models["history"].get(str(version))
+    
+    if not model_info:
+        raise HTTPException(status_code=404, detail="해당 버전을 찾을 수 없습니다.")
+
+    # 2. [보안] 현재 활성화된 모델은 삭제 불가능하게 방어
+    if all_models.get("active_version") == version:
+        raise HTTPException(status_code=400, detail="현재 사용 중인 모델은 삭제할 수 없습니다. 먼저 다른 모델을 활성화하세요.")
+
+    # 3. 물리적 파일 삭제 로직
+    try:
+        cfg_path = os.path.join(config.MODEL_DIR, model_info["config_file"])
+        eng_path = os.path.join(config.MODEL_DIR, model_info["engine_file"])
+
+        if os.path.exists(cfg_path):
+            os.remove(cfg_path)
+        if os.path.exists(eng_path):
+            os.remove(eng_path)
+            
+    except Exception as e:
+        # 파일이 이미 없거나 권한 문제가 있을 경우 로그만 남기고 진행 가능
+        print(f"파일 삭제 중 오류 발생: {e}")
+
+    # 4. 장부(Database)에서 삭제
     if registry.delete_model(version):
-        return {"status": "success"}
-    raise HTTPException(status_code=404, detail="Delete failed")
+        return {"status": "success", "message": f"Version {version} deleted."}
+    
+    raise HTTPException(status_code=500, detail="데이터베이스 삭제 실패")

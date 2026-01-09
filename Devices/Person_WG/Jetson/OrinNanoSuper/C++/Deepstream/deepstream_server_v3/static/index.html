@@ -104,7 +104,7 @@
 
     <div class="container">
         <div class="video-section">
-            <iframe id="video-feed" src="http://localhost:8889/jetson_nano" scrolling="no"></iframe>
+            <iframe id="video-feed" src="http://192.168.0.5:8889/jetson_nano" scrolling="no"></iframe>
             </div>
 
         <div class="data-panel">
@@ -180,7 +180,7 @@
             // 영상 주소 업데이트 (ID가 추가된 video-feed를 찾습니다)
             const streamPath = device === 'Nano' ? 'jetson_nano' : 'jetson_agx';
             const videoFeed = document.getElementById('video-feed');
-            if(videoFeed) videoFeed.src = `http://localhost:8889/${streamPath}`;
+            if(videoFeed) videoFeed.src = `http://192.168.0.5:8889/${streamPath}`;
             
             // 데이터 초기화
             document.getElementById('obj-tbody').innerHTML = '';
@@ -231,9 +231,26 @@
         }
 
         async function switchModel(ver) { if(confirm(`v${ver} 모델로 전환할까요?`)) { await fetch(`/api/activate/${ver}`, {method:'POST'}); loadModels(); } }
-        async function deleteModel(ver) { if(confirm(`v${ver} 모델을 영구 삭제할까요?`)) { await fetch(`/api/models/${ver}`, {method:'DELETE'}); loadModels(); } }
+        async function deleteModel(ver) {
+            if (!confirm(`v${ver} 모델을 영구 삭제할까요?`)) return;
 
-        document.getElementById('upload-form').onsubmit = async (e) => {
+            try {
+                const response = await fetch(`/api/models/${ver}`, { method: 'DELETE' });
+                const result = await response.json();
+
+                if (response.ok && result.status === "success") {
+                    alert("모델이 성공적으로 삭제되었습니다.");
+                    loadModels(); // 삭제 성공 시에만 목록 새로고침
+                } else {
+                    // 서버에서 보낸 에러 메시지(HTTPException의 detail)를 출력
+                    alert("삭제 실패: " + (result.detail || "알 수 없는 오류"));
+                }
+            } catch (error) {
+                console.error("삭제 요청 중 에러 발생:", error);
+                alert("서버와 통신 중 오류가 발생했습니다.");
+            }
+        }
+                document.getElementById('upload-form').onsubmit = async (e) => {
             e.preventDefault();
             await fetch('/upload_model', { method: 'POST', body: new FormData(e.target) });
             e.target.reset(); loadModels();
