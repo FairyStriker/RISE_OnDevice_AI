@@ -104,7 +104,7 @@
 
     <div class="container">
         <div class="video-section">
-            <iframe id="video-feed" src="http://192.168.0.5:8889/jetson_nano" scrolling="no"></iframe>
+            <iframe id="video-feed" src="http://localhost:8889/jetson_nano" scrolling="no"></iframe>
             </div>
 
         <div class="data-panel">
@@ -180,7 +180,7 @@
             // 영상 주소 업데이트 (ID가 추가된 video-feed를 찾습니다)
             const streamPath = device === 'Nano' ? 'jetson_nano' : 'jetson_agx';
             const videoFeed = document.getElementById('video-feed');
-            if(videoFeed) videoFeed.src = `http://192.168.0.5:8889/${streamPath}`;
+            if(videoFeed) videoFeed.src = `http://localhost:8889/${streamPath}`;
             
             // 데이터 초기화
             document.getElementById('obj-tbody').innerHTML = '';
